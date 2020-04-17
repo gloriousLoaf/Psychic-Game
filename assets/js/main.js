@@ -3,9 +3,11 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 var guessesMade = [];
+var counter = 9;    // brain-guy counter, see functions
 
 // Array of psychicLetter possibilities
-var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var choices = "abcdefghijklmnopqrstuvwxyz";
+var computerChoices = choices.split("");
 
 // Random letter generator (thanks to Rock Paper Scissors activity for this bit of code!)
 var psychicLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
@@ -32,6 +34,24 @@ function updateLosses() {
     document.getElementById("losses").innerHTML = "Losses: " + losses;
 }
 
+// brain-guy emerges more with each wrong guess!
+function brainGuyComes() {
+    counter--;
+    var numCounter = counter;
+    document.getElementById("counter").textContent = "Only " + numCounter + " guesses left! Choose wisely.";
+    // this loop is for grammar, so it doesn't display "1 guesses" on the page
+    if (numCounter == 1) {
+        document.getElementById("counter").textContent = "Only " + numCounter + " guess left! Choose wisely.";
+    }
+    var brainGuy = document.getElementById("brain-guy");
+    brainGuy.style.opacity = parseFloat(brainGuy.style.opacity) + 0.1;
+}
+//brain-guy disappears and counter resests on newGame
+function brainGuyGoes() {
+    counter = 9;
+    document.getElementById("brain-guy").style.opacity = 0;
+}
+
 // New psychicLetter after win or loss
 function updatePsychicLetter() {
     psychicLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
@@ -43,6 +63,7 @@ var newGame = function () {
     guessesMade = [];
     updatePsychicLetter();
     updateGuessesLeft();
+    brainGuyGoes();
 }
 
 /* End functions to call in Game Loop  */
@@ -70,6 +91,7 @@ document.onkeyup = function (event) {
         guessesMade.push(playerGuess);
         updateGuessesLeft();
         updateGuessesMade();
+        brainGuyComes();
 
         // Correct guess! Increments wins, alerts player, calls newGame()
         if (guessesLeft > 0) {

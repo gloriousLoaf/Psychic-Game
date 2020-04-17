@@ -31,9 +31,9 @@
             </div>
 
             <div class="col-4">
-                <div class="card bg-dark text-white mt-2">
+                <div class="card bg-dark text-white mt-2 mb-2 pb-1">
                     <div class="card-body">
-                        <h6 class="card-subtitle">Can you read minds?</h6>
+                        <h6 class="card-subtitle" style="text-align: center;">Can you read minds?</h6>
                         <br>
                         <img class="card-img" style="object-fit: cover" src="./assets/img/crystal-ball.gif"
                             alt="Crystal Ball .gif">
@@ -44,13 +44,25 @@
 
         <div class="row">
             <div class="col-8">
-                <div class="card border-info mt-3 p-2">
+                <div class="card border-info mt-2 p-2">
                     <div class="card-body" style="font-weight:500">
                         <p id="wins">Wins: 0</p>
                         <p id="losses">Losses: 0</p>
                         <br>
                         <p id="guesses-left">Guesses Left: 9</p>
                         <p id="guesses-made">Guesses Made: </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card bg-dark text-white mt-2" id="brain-guy" style="opacity: 0;">
+                    <div class="card-body">
+                        <p class="card-subtitle" id="counter" style="text-align: center;"></p>
+                        <br>
+                        <img class="card-img" id="brain-guy"
+                            style="display: block; margin-left: auto; margin-right: auto; max-height: 75%; max-width: 75%;"
+                            src="./assets/img/brain.jpg" alt="Crystal Ball .gif">
                     </div>
                 </div>
             </div>
